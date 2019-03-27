@@ -1,2 +1,2 @@
-include ':lib'
+include ':lib', ':sample'
 rootProject.name='B1NDBottomSheet'
