@@ -39,7 +39,7 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     private String mTemper;
 
     private Drawable mProfileDrawable;
-    private Drawable mSubMenuDrawable;
+    private Drawable mSubIconDrawable;
 
     private OnBottomSheetSubItemClickedListener onBottomSheetSubItemClickedListener;
     private OnBottomSheetOptionsItemSelectedListener onBottomSheetOptionsItemSelectedListener;
@@ -77,11 +77,12 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
             dismiss();
         });
         profileView.setImageDrawable(mProfileDrawable);
-        subIcon.setImageDrawable(mSubMenuDrawable);
+        subIcon.setImageDrawable(mSubIconDrawable);
         nameView.setText(mName);
         emailView.setText(mEmail);
         temperView.setText(mTemper);
-        viewGroup.addView((View) navigationMenuPresenter.getMenuView(viewGroup));
+        if (menuRes != 0)
+            viewGroup.addView((View) navigationMenuPresenter.getMenuView(viewGroup));
         navigationMenu.setCallback(new MenuBuilder.Callback() {
             @Override
             public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
@@ -145,20 +146,20 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     }
 
     public void setSubIconImageDrawable(Drawable drawable) {
-        mSubMenuDrawable = drawable;
+        mSubIconDrawable = drawable;
     }
 
     public void setSubIconImageResource(@DrawableRes int resource, Resources resources) {
-        mSubMenuDrawable = resources.getDrawable(resource, resources.newTheme());
+        mSubIconDrawable = resources.getDrawable(resource, resources.newTheme());
     }
 
     public void setSubIconImageBitmap(Bitmap bitmap) {
-        mSubMenuDrawable = new BitmapDrawable(Resources.getSystem(), bitmap);
+        mSubIconDrawable = new BitmapDrawable(Resources.getSystem(), bitmap);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setSubIconImageIcon(Icon icon, Context context) {
-        mSubMenuDrawable = icon.loadDrawable(context);
+        mSubIconDrawable = icon.loadDrawable(context);
     }
 
     public void setName(String mName) {
