@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
@@ -37,11 +38,8 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     private String mEmail;
     private String mTemper;
 
-    private ImageView profileView;
-    private ImageButton subIcon;
-    private TextView nameView;
-    private TextView emailView;
-    private TextView temperView;
+    private Drawable mProfileDrawable;
+    private Drawable mSubIconDrawable;
 
     private OnBottomSheetSubItemClickedListener onBottomSheetSubItemClickedListener;
     private OnBottomSheetOptionsItemSelectedListener onBottomSheetOptionsItemSelectedListener;
@@ -57,7 +55,7 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        navigationMenu = new NavigationMenu(getContext());
+        navigationMenu = new NavigationMenu(requireContext());
         navigationMenuPresenter = new NavigationMenuPresenter();
         navigationMenu.addMenuPresenter(navigationMenuPresenter);
     }
@@ -67,17 +65,19 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.bottom_sheet, container, false);
-        profileView = viewGroup.findViewById(R.id.profileView);
-        subIcon = viewGroup.findViewById(R.id.subIcon);
-        nameView = viewGroup.findViewById(R.id.nameView);
-        emailView = viewGroup.findViewById(R.id.emailView);
-        temperView = viewGroup.findViewById(R.id.temperView);
+        ImageView profileView = viewGroup.findViewById(R.id.profileView);
+        ImageButton subIcon = viewGroup.findViewById(R.id.subIcon);
+        TextView nameView = viewGroup.findViewById(R.id.nameView);
+        TextView emailView = viewGroup.findViewById(R.id.emailView);
+        TextView temperView = viewGroup.findViewById(R.id.temperView);
 
         subIcon.setOnClickListener(v -> {
             if (onBottomSheetSubItemClickedListener != null)
                 onBottomSheetSubItemClickedListener.onBottomSheetSubItemClicked(v);
             dismiss();
         });
+        profileView.setImageDrawable(mProfileDrawable);
+        subIcon.setImageDrawable(mSubIconDrawable);
         nameView.setText(mName);
         emailView.setText(mEmail);
         temperView.setText(mTemper);
@@ -128,45 +128,37 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     }
 
     public void setProfileImageDrawable(Drawable drawable) {
-        profileView.setImageDrawable(drawable);
+        mProfileDrawable = drawable;
     }
 
     public void setProfileImageResource(@DrawableRes int resource) {
-        profileView.setImageResource(resource);
+        mProfileDrawable = getResources().getDrawable(resource, getResources().newTheme());
     }
 
     public void setProfileImageBitmap(Bitmap bitmap) {
-        profileView.setImageBitmap(bitmap);
-    }
-
-    public void setProfileImageURI(Uri uri) {
-        profileView.setImageURI(uri);
+        mProfileDrawable = new BitmapDrawable(getResources(), bitmap);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setProfileImageIcon(Icon icon) {
-        profileView.setImageIcon(icon);
+        mProfileDrawable = icon.loadDrawable(getContext());
     }
 
     public void setSubIconImageDrawable(Drawable drawable) {
-        subIcon.setImageDrawable(drawable);
+        mSubIconDrawable = drawable;
     }
 
     public void setSubIconImageResource(@DrawableRes int resource) {
-        subIcon.setImageResource(resource);
+        mSubIconDrawable = getResources().getDrawable(resource, getResources().newTheme());
     }
 
     public void setSubIconImageBitmap(Bitmap bitmap) {
-        subIcon.setImageBitmap(bitmap);
-    }
-
-    public void setSubIconImageURI(Uri uri) {
-        subIcon.setImageURI(uri);
+        mSubIconDrawable = new BitmapDrawable(getResources(), bitmap);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void setSubIconImageIcon(Icon icon) {
-        subIcon.setImageIcon(icon);
+        mSubIconDrawable = icon.loadDrawable(getContext());
     }
 
     public void setName(String mName) {
