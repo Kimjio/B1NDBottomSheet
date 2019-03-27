@@ -5,9 +5,19 @@
 
 On your build.gradle, add the library to the dependencies section
 ```gradle
+android {
+  // ...
+  compileOptions {
+    sourceCompatibility = '1.8'
+    targetCompatibility = '1.8'
+  }
+  // ...  
+}
+
+
 dependencies {
   // ...
-  implementation 'kr.hs.dgsw.b1nd.bottomsheet:b1ndbottomsheet:1.1.0'
+  implementation 'kr.hs.dgsw.b1nd.bottomsheet:b1ndbottomsheet:1.2.0'
   // ...
 }
 ```
