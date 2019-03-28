@@ -81,8 +81,11 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
         nameView.setText(mName);
         emailView.setText(mEmail);
         temperView.setText(mTemper);
-        if (menuRes != 0)
+        if (menuRes != 0) {
             viewGroup.addView((View) navigationMenuPresenter.getMenuView(viewGroup));
+        } else {
+            viewGroup.findViewById(R.id.divider).setVisibility(View.GONE);
+        }
         navigationMenu.setCallback(new MenuBuilder.Callback() {
             @Override
             public boolean onMenuItemSelected(MenuBuilder menu, MenuItem item) {
