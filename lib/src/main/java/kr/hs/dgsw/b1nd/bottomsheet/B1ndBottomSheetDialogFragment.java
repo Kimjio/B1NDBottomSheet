@@ -115,12 +115,14 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
-    public void setOnBottomSheetSubItemClickedListener(OnBottomSheetSubItemClickedListener onBottomSheetSubItemClickedListener) {
+    public B1ndBottomSheetDialogFragment setOnBottomSheetSubItemClickedListener(OnBottomSheetSubItemClickedListener onBottomSheetSubItemClickedListener) {
         this.onBottomSheetSubItemClickedListener = onBottomSheetSubItemClickedListener;
+        return this;
     }
 
-    public void setOnBottomSheetOptionsItemSelectedListener(OnBottomSheetOptionsItemSelectedListener onBottomSheetItemSelectedListener) {
+    public B1ndBottomSheetDialogFragment setOnBottomSheetOptionsItemSelectedListener(OnBottomSheetOptionsItemSelectedListener onBottomSheetItemSelectedListener) {
         this.onBottomSheetOptionsItemSelectedListener = onBottomSheetItemSelectedListener;
+        return this;
     }
 
     @Override
@@ -128,50 +130,61 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
         return R.style.Theme_B1ND_BottomSheetDialog;
     }
 
-    public void setProfileImageDrawable(Drawable drawable) {
+    public B1ndBottomSheetDialogFragment setProfileImageDrawable(Drawable drawable) {
         mProfileDrawable = drawable;
+        return this;
     }
 
-    public void setProfileImageResource(@DrawableRes int resource, Resources resources) {
+    public B1ndBottomSheetDialogFragment setProfileImageResource(@DrawableRes int resource, Resources resources) {
         mProfileDrawable = resources.getDrawable(resource, resources.newTheme());
+        return this;
     }
 
-    public void setProfileImageBitmap(Bitmap bitmap) {
+    public B1ndBottomSheetDialogFragment setProfileImageBitmap(Bitmap bitmap) {
         mProfileDrawable = new BitmapDrawable(Resources.getSystem(), bitmap);
+        return this;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void setProfileImageIcon(Icon icon, Context context) {
+    public B1ndBottomSheetDialogFragment setProfileImageIcon(Icon icon, Context context) {
         mProfileDrawable = icon.loadDrawable(context);
+        return this;
     }
 
-    public void setSubIconImageDrawable(Drawable drawable) {
+    public B1ndBottomSheetDialogFragment setSubIconImageDrawable(Drawable drawable) {
         mSubIconDrawable = drawable;
+        return this;
     }
 
-    public void setSubIconImageResource(@DrawableRes int resource, Resources resources) {
+    public B1ndBottomSheetDialogFragment setSubIconImageResource(@DrawableRes int resource, Resources resources) {
         mSubIconDrawable = resources.getDrawable(resource, resources.newTheme());
+        return this;
     }
 
-    public void setSubIconImageBitmap(Bitmap bitmap) {
+    public B1ndBottomSheetDialogFragment setSubIconImageBitmap(Bitmap bitmap) {
         mSubIconDrawable = new BitmapDrawable(Resources.getSystem(), bitmap);
+        return this;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void setSubIconImageIcon(Icon icon, Context context) {
+    public B1ndBottomSheetDialogFragment setSubIconImageIcon(Icon icon, Context context) {
         mSubIconDrawable = icon.loadDrawable(context);
+        return this;
     }
 
-    public void setName(String mName) {
+    public B1ndBottomSheetDialogFragment setName(String mName) {
         this.mName = mName;
+        return this;
     }
 
-    public void setEmail(String mEmail) {
+    public B1ndBottomSheetDialogFragment setEmail(String mEmail) {
         this.mEmail = mEmail;
+        return this;
     }
 
-    public void setTemper(String mTemper) {
+    public B1ndBottomSheetDialogFragment setTemper(String mTemper) {
         this.mTemper = mTemper;
+        return this;
     }
 
     @SuppressLint("RestrictedApi")
@@ -183,6 +196,11 @@ public class B1ndBottomSheetDialogFragment extends BottomSheetDialogFragment {
     }
 
     public interface OnBottomSheetSubItemClickedListener {
+        /**
+         * SubItem이 클릭될 떄 불림
+         *
+         * @param view 클릭 된 SubItem.
+         */
         void onBottomSheetSubItemClicked(@NonNull View view);
     }
 

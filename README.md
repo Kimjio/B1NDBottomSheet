@@ -17,7 +17,7 @@ android {
 
 dependencies {
   // ...
-  implementation 'kr.hs.dgsw.b1nd.bottomsheet:b1ndbottomsheet:1.2.0'
+  implementation 'kr.hs.dgsw.b1nd.bottomsheet:b1ndbottomsheet:1.3.0'
   // ...
 }
 ```

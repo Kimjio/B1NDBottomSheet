@@ -7,8 +7,8 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.2.0"
+        versionCode 4
+        versionName "1.3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -36,7 +36,7 @@ ext {
     siteUrl = 'https://github.com/Kimjio/B1NDBottomSheet'
     gitUrl = 'https://github.com/Kimjio/B1NDBottomSheet.git'
 
-    libraryVersion = '1.2.0'
+    libraryVersion = '1.3.0'
 
     developerId = 'kimji'
     developerName = 'Ji O Kim'
@@ -47,7 +47,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha03'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha04'
+    implementation 'com.google.android.material:material:1.1.0-alpha05'
 }
 
 
